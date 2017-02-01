@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+header {
+    margin-top: 15px;
+    text-align: center;
+}
+header h2 {
+    font-weight: 400;
+}
+section img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    height: 175px;
+}
+form {
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+}
+.radioButton {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.submitButton {
+    margin-top: 20px;
+    font-size: 100pt;
+}
+.enterYear {
+    margin-bottom: 10px;
+}
