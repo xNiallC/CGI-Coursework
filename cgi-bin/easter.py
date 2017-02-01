@@ -1,13 +1,8 @@
-#!usr/bin/python
+#!/usr/bin/python
 import cgi, cgitb
 import calendar
 
-easterForm = cgi.FieldStorage()
-easterYear = int(easterForm.getvalue('easterYear'))
-displayType = easterForm.getvalue('displayType')
-
-
-def Easter(y, displayType):
+def easter(y, displayType):
     a = y % 19
     b = y // 100
     c = y % 100
@@ -30,7 +25,7 @@ def Easter(y, displayType):
         daySuffix = "nd"
     else:
         daySuffix = "rd"
-    
+
     if displayType == 1:
         return(str(p) + "/" + str(n) + "/" + str(y))
 
@@ -40,12 +35,20 @@ def Easter(y, displayType):
     if displayType == 3:
         return(str(p) + "/" + str(n) + "/" + str(y) + " | " + str(p) + daySuffix + " of " + str(calendar.month_name[n]) + " " + str(y))
 
-print("Content-Type: text/html; charset=utf-8")
-print("")
-print("<!DOCTYPE HTML>")
-print("<html>")
-print("<head><title>Finding Easter</title></head>")
-print("<body>")
-print(Easter(2017, 3))
-print("</body>")
-print("</html>")
+def main():
+    easterForm = cgi.FieldStorage()
+    easterYear = int(easterForm.getvalue('easterYear'))
+    displayType = int(easterForm.getvalue('displayType'))
+    
+    print("Content-Type: text/html; charset=utf-8")
+    print("")
+    print("<!DOCTYPE HTML>")
+    print("<html>")
+    print("<head><title>Finding Easter</title></head>")
+    print("<body>")
+    print(easter(easterYear, displayType))
+    print("</body>")
+    print("</html>")
+
+if __name__ == '__main__':
+    main()
