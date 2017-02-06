@@ -37,22 +37,39 @@ def easter(y, displayType):
 
 def main():
     easterForm = cgi.FieldStorage()
-    easterYear = int(easterForm.getvalue('easterYear'))
+    easterYear = easterForm.getvalue('easterYear', 'a')
     displayType = int(easterForm.getvalue('displayType'))
-    
+    easterYearFormatted = easterYear.strip()
+
     print("Content-Type: text/html; charset=utf-8")
     print("")
     print("<!DOCTYPE HTML>")
     print("<html>")
-    print("<head>"
-    print("<link rel=\"stylesheet\" type=\"text/css\" href=\"stylesheet.css\">")
+    print("<head>")
+    print("<link href=\"https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900\" rel=\"stylesheet\" />")
+    print("<link rel=\"stylesheet\" type=\"text/css\" href=\"../stylesheetCGI.css\" />")
     print("<title>Finding Easter</title>")
     print("</head>")
     print("<body>")
-    print("In the year " + easterYear + " easter will occur on:")
-    print(easter(easterYear, displayType))
-    print("</body>")
-    print("</html>")
+    if easterYearFormatted.isdigit() == False:
+        print("<h1>404: Easter Not Found</h1>")
+        print("<br>")
+        print("<img src=\"../img/easter.png\">")
+        print("Invalid Input. Please try again. :-)")
+        print("</body>")
+        print("</html>")   
+    else:
+        easterYearInt = int(easterYearFormatted)
+        print("<h1>You found Easter!</h1>")
+        print("<br>")
+        print("<img src=\"../img/easter.png\">")
+        print("In the year " + str(easterYear) + ", easter will occur on:")
+        print("<div class=\"easter\">")
+        print("<br>")
+        print(easter(easterYearInt, displayType))
+        print("</div>")
+        print("</body>")
+        print("</html>")
 
 if __name__ == '__main__':
     main()
